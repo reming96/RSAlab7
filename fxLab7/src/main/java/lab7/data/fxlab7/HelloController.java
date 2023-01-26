@@ -4,12 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
@@ -46,6 +44,12 @@ public class HelloController implements Initializable {
     private TextField privateName;
 
     @FXML
+    private TextArea inputArea;
+    @FXML
+    private Button saveInputBtn;
+
+
+    @FXML
     private Button encrBtn;
     @FXML
     private Button decrBtn;
@@ -66,27 +70,34 @@ public class HelloController implements Initializable {
     }
     @FXML
     private void setBtnEncPath(ActionEvent event){
-        simpleFileChooser(labEncPath);
+        simpleFileChooser(labEncPath, "", "??????????");
     }
     @FXML
     private void setBtnDecrPath(ActionEvent event){
-        simpleFileChooser(labDecrPath);
+        simpleFileChooser(labDecrPath, "encrypted(outputs)", "Выбран не зашифрованный файл! Выберите другой(из папки encrypted(outputs))");
     }
     @FXML
     private void setBtnPublicPath(ActionEvent event){
-        simpleFileChooser(labPublicPath);
+        simpleFileChooser(labPublicPath, "publicKeys", "Выбран неверный публичный ключ! Выберите другой(из папки publicKeys)");
     }
     @FXML
     private void setBtnPrivatePath(ActionEvent event){
-        simpleFileChooser(labPrivatePath);
+        simpleFileChooser(labPrivatePath, "privateKeys", "Выбран неверный приватный ключ! Выберите другой(из папки privateKeys)");
     }
-    private void simpleFileChooser(Label labFile){
+    private void simpleFileChooser(Label labFile, String allowedPath, String messege){
         FileChooser fc = new FileChooser();
         File f = fc.showOpenDialog(null);
-        if (f != null){
-            /*labFile.setText("Выбранный файл: " + f.getAbsolutePath());*/
-            labFile.setText(f.getAbsolutePath());
+        if (!f.getPath().contains(allowedPath)){
+            a.setAlertType(Alert.AlertType.ERROR);
+            a.setContentText(messege);
+            a.show();
+        }else{
+            if (f != null){
+                /*labFile.setText("Выбранный файл: " + f.getAbsolutePath());*/
+                labFile.setText(f.getAbsolutePath());
+            }
         }
+
     }
     Alert a = new Alert(Alert.AlertType.NONE);
     @FXML
@@ -139,13 +150,41 @@ public class HelloController implements Initializable {
             a.setContentText("Файл "+ Paths.get(labDecrPath.getText()).getFileName() + " рашифрован\n"+ "Расшифрованный файл: "+ Paths.get(rsaEncryptor.outputPath).getFileName());
             a.show();
         }
+    }
+
+    @FXML
+    private void saveInput(){
+        String text = inputArea.getText();
+        FileChooser fc = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
+        fc.getExtensionFilters().add(extFilter);
+        if(!text.trim().isEmpty() && text!=null){
+            File f = fc.showSaveDialog(null);
+
+            if (f != null){// строка для записи
+                try(FileOutputStream fos=new FileOutputStream(f.getAbsolutePath()))
+                {
+                    // перевод строки в байты
+                    byte[] buffer = text.getBytes();
+
+                    fos.write(buffer, 0, buffer.length);
+                    a.setAlertType(Alert.AlertType.INFORMATION);
+                    a.getDialogPane().setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+                    a.setContentText("Файл сохранен.\n"+"Путь: "+f.getAbsolutePath());
+                    a.show();
+                }
+                catch(IOException ex){
+
+                    System.out.println(ex.getMessage());
+                }
+            }
+        }else{
+                a.setAlertType(Alert.AlertType.ERROR);
+                a.setContentText("Введите текст!!!");
+                a.show();
+            }
 
 
-        /*out.println("path to encrypted file");
-                    path = sc.nextLine();
-                    String encrypted = FileToString(path);
-                    rsaEncryptor.Decrypt(encrypted);
-                    break;*/
     }
 
     public static String FileToString(String path) {

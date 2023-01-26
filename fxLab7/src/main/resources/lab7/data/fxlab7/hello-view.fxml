@@ -5,22 +5,25 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lab7.data.fxlab7.HelloController">
    <children>
-      <Button fx:id="btnEncPath" layoutX="167.0" layoutY="383.0" mnemonicParsing="false" onAction="#setBtnEncPath" text="Выбрать файл" />
-      <Label fx:id="labEncPath" layoutX="288.0" layoutY="387.0" text="Путь к файлу который хотите зашифровать" />
-      <ComboBox fx:id="comboBoxK" layoutX="34.0" layoutY="90.0" prefWidth="150.0" />
-      <Button layoutX="44.0" layoutY="187.0" mnemonicParsing="false" onAction="#generateKeyBtn" text="Сгенерировать ключ" />
-      <Button fx:id="btnPublicPath" layoutX="61.0" layoutY="257.0" mnemonicParsing="false" onAction="#setBtnPublicPath" text="ВЫбрать открытый ключ" />
-      <Button fx:id="btnPrivatePath" layoutX="62.0" layoutY="300.0" mnemonicParsing="false" onAction="#setBtnPrivatePath" text="Выбрать закрытый ключ" />
-      <Label fx:id="labPublicPath" layoutX="238.0" layoutY="261.0" text="Путь к открытому ключу" />
-      <Label fx:id="labPrivatePath" layoutX="238.0" layoutY="304.0" text="Путь к закрытому ключу" />
-      <Button fx:id="encrBtn" layoutX="222.0" layoutY="427.0" mnemonicParsing="false" onAction="#encryptBtn" text="Зашифровать" />
-      <Button fx:id="btnDecrPath" layoutX="167.0" layoutY="470.0" mnemonicParsing="false" onAction="#setBtnDecrPath" text="Выбрать файл" />
-      <Button fx:id="decrBtn" layoutX="219.0" layoutY="509.0" mnemonicParsing="false" onAction="#decryptBtn" text="Расшифровать" />
-      <Label fx:id="labDecrPath" layoutX="288.0" layoutY="474.0" text="Путь к файлу который хотите расшифровать" />
-      <Label layoutX="207.0" layoutY="94.0" text="Число К(разрядность)" />
-      <TextField fx:id="publicName" layoutX="199.0" layoutY="187.0" />
-      <TextField fx:id="privateName" layoutX="417.0" layoutY="187.0" />
-      <Label layoutX="175.0" layoutY="161.0" text="Введите имя для публичного ключа" />
-      <Label layoutX="394.0" layoutY="161.0" text="Введите имя для приватного ключа" />
+      <Button fx:id="btnEncPath" layoutX="175.0" layoutY="429.0" mnemonicParsing="false" onAction="#setBtnEncPath" text="Выбрать файл" />
+      <Label fx:id="labEncPath" layoutX="274.0" layoutY="433.0" text="Путь к файлу который хотите зашифровать" />
+      <ComboBox fx:id="comboBoxK" layoutX="33.0" layoutY="72.0" prefWidth="150.0" />
+      <Button layoutX="43.0" layoutY="257.0" mnemonicParsing="false" onAction="#generateKeyBtn" text="Сгенерировать ключ" />
+      <Button fx:id="btnPublicPath" layoutX="61.0" layoutY="321.0" mnemonicParsing="false" onAction="#setBtnPublicPath" text="ВЫбрать открытый ключ" />
+      <Button fx:id="btnPrivatePath" layoutX="61.0" layoutY="356.0" mnemonicParsing="false" onAction="#setBtnPrivatePath" text="Выбрать закрытый ключ" />
+      <Label fx:id="labPublicPath" layoutX="226.0" layoutY="325.0" text="Путь к открытому ключу" />
+      <Label fx:id="labPrivatePath" layoutX="226.0" layoutY="360.0" text="Путь к закрытому ключу" />
+      <Button fx:id="encrBtn" layoutX="328.0" layoutY="455.0" mnemonicParsing="false" onAction="#encryptBtn" text="Зашифровать" />
+      <Button fx:id="btnDecrPath" layoutX="175.0" layoutY="492.0" mnemonicParsing="false" onAction="#setBtnDecrPath" text="Выбрать файл" />
+      <Button fx:id="decrBtn" layoutX="326.0" layoutY="535.0" mnemonicParsing="false" onAction="#decryptBtn" text="Расшифровать" />
+      <Label fx:id="labDecrPath" layoutX="294.0" layoutY="496.0" text="Путь к файлу который хотите расшифровать" />
+      <Label layoutX="194.0" layoutY="76.0" text="Число К(разрядность)" />
+      <TextField fx:id="publicName" layoutX="194.0" layoutY="257.0" />
+      <TextField fx:id="privateName" layoutX="417.0" layoutY="257.0" />
+      <Label layoutX="176.0" layoutY="232.0" text="Введите имя для публичного ключа" />
+      <Label layoutX="393.0" layoutY="232.0" text="Введите имя для приватного ключа" />
+      <TextArea fx:id="inputArea" layoutX="374.0" layoutY="26.0" prefHeight="117.0" prefWidth="270.0" />
+      <Label layoutX="454.0" layoutY="5.0" text="Введите текст" />
+      <Button fx:id="saveInputBtn" layoutX="436.0" layoutY="151.0" mnemonicParsing="false" onAction="#saveInput" text="Сохранить текст в файл" />
    </children>
 </AnchorPane>
