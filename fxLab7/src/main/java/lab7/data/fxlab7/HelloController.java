@@ -110,7 +110,7 @@ public class HelloController implements Initializable {
             rsaEncryptor.bitLength = Integer.parseInt(comboBoxK.getValue());
             rsaEncryptor.GenKeys(publicName.getText(), privateName.getText());
             a.setAlertType(Alert.AlertType.INFORMATION);
-            a.setContentText("Сгенерированы новые ключи:\n"+"Пубичный: "+publicName.getText()+"\n"+"Приватный: "+privateName.getText());
+            a.setContentText("Сгенерированы новые ключи:\n"+"Публичный: "+publicName.getText()+"\n"+"Приватный: "+privateName.getText());
             a.show();
         }
 
